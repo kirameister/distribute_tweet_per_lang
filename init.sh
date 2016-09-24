@@ -1,0 +1,1 @@
+cd ../ && virtualenv --no-site-packages --distribute -p python3 distribute_tweet_per_lang && source distribute_tweet_per_lang/bin/activate && pip install -r ./distribute_tweet_per_lang/required_python_packages.txt
