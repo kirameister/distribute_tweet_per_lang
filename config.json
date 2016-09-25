@@ -1,0 +1,25 @@
+{
+    "consumer_key": "YOUR_CONSUMER_KEY",
+    "consumer_secret": "YOUR_CONSUMER_SECRET_KEY",
+    "de": {
+        "access_secret": "ACCESS_KEY_SECRET",
+        "access_token": "ACCESS_KEY",
+        "account_name": "Account_name_for_German"
+    },
+    "en": {
+        "access_secret": "ACCESS_KEY_SECRET",
+        "access_token": "ACCESS_KEY",
+        "account_name": "Account_name_for_English"
+    },
+    "ja": {
+        "access_secret": "ACCESS_KEY_SECRET",
+        "access_token": "ACCESS_KEY",
+        "account_name": "Account_name_for_Japanese"
+    },
+    "last_id": LAST_TWEET_ID,
+    "src_account": {
+        "access_secret": "ACCESS_KEY_SECRET",
+        "access_token": "ACCESS_KEY",
+        "account_name": "Source_account_name"
+    }
+}
