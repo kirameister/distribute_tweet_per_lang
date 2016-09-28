@@ -13,6 +13,7 @@ if(__name__ == '__main__'):
     parser = argparse.ArgumentParser(description='Detect the language of latest tweet(s) and distribute to appropriate (and separate) account. ')
     parser.add_argument('config_file', type=str, help="Name of the JSON file with required configurations. ")
     parser.add_argument('-v', '--verbose', action="store_true")
+    parser.add_argument('-i', '--init', action="store_true")
     args = parser.parse_args()
     with open(args.config_file, 'r') as fd:
         config_data = json.load(fd)
@@ -28,11 +29,18 @@ if(__name__ == '__main__'):
         print("src account_ID: " + config_data["src_account"]["account_name"])
     auth.set_access_token(ACCESS_TOKEN, ACCESS_SECRET)
     api = tweepy.API(auth)
-    results = api.user_timeline(screen_name=config_data["src_account"]["account_name"], since_id=int(config_data["last_id"]))
+    if(args.init):
+        results = api.user_timeline(screen_name=config_data["src_account"]["account_name"])
+        if(args.verbose):
+            print("INIT MODE -- last ID: " + str(results[0].id))
+    else:
+        results = api.user_timeline(screen_name=config_data["src_account"]["account_name"], since_id=int(config_data["last_id"]))
     # update the latest tweet ID.
     try:
         config_data["last_id"] = results[0].id
     except IndexError:
+        sys.exit()
+    if(args.init):
         sys.exit()
     results.reverse()
     if(args.verbose):
