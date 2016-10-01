@@ -6,6 +6,7 @@ import re
 import sys
 
 import langdetect
+from langdetect import detect_langs
 import tweepy
 
 
@@ -39,6 +40,7 @@ if(__name__ == '__main__'):
     try:
         config_data["last_id"] = results[0].id
     except IndexError:
+        print("=== The key 'last_id' must be present with int value ===")
         sys.exit()
     if(args.init):
         sys.exit()
@@ -46,26 +48,31 @@ if(__name__ == '__main__'):
     if(args.verbose):
         print("=== Obtained Tweets since last run ===")
         for result in results:
-            languages = str(langdetect.detect_langs(result.text)) 
-            print(str(result.id) + "\t" + languages + "\t" + result.text)
-    sys.exit()
+            languages = detect_langs(result.text)
+            print(str(result.id) + "\t" + str(languages) + "\t" + result.text)
     for result in results:
         if(re.search('^@', result.text)):
             if(args.verbose):
                 print("Ignored because it is a reply: \t" + result.text)
             continue
-        try:
-            dst_access_token  = config_data[langdetect.detect(result.text)]["access_token"]
-            dst_access_secret = config_data[langdetect.detect(result.text)]["access_secret"]
-            auth.set_access_token(dst_access_token, dst_access_secret)
-            api_dst = tweepy.API(auth)
-            #api.update_status(status=result.text)
-            if(args.verbose):
-                print("TWEET POSTED ("+ langdetect.detect(result.text) +"): \t" + result.text)
-        except KeyError:
-            if(args.verbose):
-                print("Ignored because it is a specified language ("+ langdetect.detect(result.text) +"): \t" + result.text)
-            continue
+        predicted_lang_set = set()
+        # manual prediction comes here..
+        predicted_langs = langdetect.detect_langs(result.text)
+        for i,lang_value in enumerate(predicted_langs):
+            predicted_lang_set.add(re.sub(':.*$', '', str(lang_value)))
+        for lang in predicted_lang_set:
+            try:
+                dst_access_token  = config_data[lang]["access_token"]
+                dst_access_secret = config_data[lang]["access_secret"]
+                auth.set_access_token(dst_access_token, dst_access_secret)
+                api_dst = tweepy.API(auth)
+                #api.update_status(status=result.text)
+                if(args.verbose):
+                    print("TWEET POSTED ("+ langdetect.detect(result.text) +"): \t" + result.text)
+            except KeyError:
+                if(args.verbose):
+                    print("Ignored because it is not one of those specified languages ("+ langdetect.detect(result.text) +"): \t" + result.text)
+                continue
 
     with open(args.config_file, 'w') as fd:
         json.dump(config_data, fd, sort_keys=True, indent=4)
