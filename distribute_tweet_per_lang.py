@@ -40,7 +40,7 @@ if(__name__ == '__main__'):
     try:
         config_data["last_id"] = results[0].id
     except IndexError:
-        print("=== The key 'last_id' must be present with int value ===")
+        print("=== No result obtained, perhaps no updated tweet from the last run? ===")
         sys.exit()
     if(args.init):
         sys.exit()
@@ -57,6 +57,7 @@ if(__name__ == '__main__'):
             continue
         predicted_lang_set = set()
         # manual prediction comes here..
+        # following is automatic detection..
         predicted_langs = langdetect.detect_langs(result.text)
         for i,lang_value in enumerate(predicted_langs):
             predicted_lang_set.add(re.sub(':.*$', '', str(lang_value)))
