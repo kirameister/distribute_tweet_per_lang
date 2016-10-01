@@ -46,7 +46,9 @@ if(__name__ == '__main__'):
     if(args.verbose):
         print("=== Obtained Tweets since last run ===")
         for result in results:
-            print(str(result.id) + "\t" + langdetect.detect(result.text) + "\t" + result.text)
+            languages = str(langdetect.detect_langs(result.text)) 
+            print(str(result.id) + "\t" + languages + "\t" + result.text)
+    sys.exit()
     for result in results:
         if(re.search('^@', result.text)):
             if(args.verbose):
@@ -57,7 +59,7 @@ if(__name__ == '__main__'):
             dst_access_secret = config_data[langdetect.detect(result.text)]["access_secret"]
             auth.set_access_token(dst_access_token, dst_access_secret)
             api_dst = tweepy.API(auth)
-            api.update_status(status=result.text)
+            #api.update_status(status=result.text)
             if(args.verbose):
                 print("TWEET POSTED ("+ langdetect.detect(result.text) +"): \t" + result.text)
         except KeyError:
