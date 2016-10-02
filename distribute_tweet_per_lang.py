@@ -26,7 +26,8 @@ if(__name__ == '__main__'):
     parser.add_argument('config_file', type=str, help="Name of the JSON file with required configurations. ")
     parser.add_argument('-l', '--lang', type=str, help="Name of the JSON file with expressions for different languages")
     parser.add_argument('-v', '--verbose', action="store_true")
-    parser.add_argument('-i', '--init', action="store_true")
+    parser.add_argument('-i', '--init', help="Simply store the latest tweet ID, no forwarding", action="store_true")
+    parser.add_argument('-d', '--dry', help="Dry run, do not actually post the tweets", action="store_true")
     args = parser.parse_args()
     # loading configs..
     with open(args.config_file, 'r') as fd:
@@ -91,7 +92,8 @@ if(__name__ == '__main__'):
                 dst_access_secret = config_data[lang]["access_secret"]
                 auth.set_access_token(dst_access_token, dst_access_secret)
                 api_dst = tweepy.API(auth)
-                #api.update_status(status=result.text)
+                if(not args.dry):
+                    api.update_status(status=result.text)
                 if(args.verbose):
                     print("TWEET POSTED ("+ lang +"): \t" + result.text)
             except KeyError:
