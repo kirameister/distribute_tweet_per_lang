@@ -99,6 +99,6 @@ if(__name__ == '__main__'):
                     print("Ignored because it is not one of those specified languages ("+ lang +"): \t" + result.text)
                 continue
 
-#    with open(args.config_file, 'w') as fd:
-#        json.dump(config_data, fd, sort_keys=True, indent=4)
+    with open(args.config_file, 'w') as fd:
+        json.dump(config_data, fd, sort_keys=True, indent=4)
 
