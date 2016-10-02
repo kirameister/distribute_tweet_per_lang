@@ -1,5 +1,5 @@
 {
-"en":["\\bjob\\b", "\\bgood\\b", "\\b[Tt]he\\b", "\\bday\\b", "\\blike\\b", "\\b[Yy]eah\\b", "\\b[Ss]omething\\b"],
+"en":["\\bjob\\b", "\\bgood\\b", "\\b[Tt]he\\b", "\\bday\\b", "\\blike\\b", "\\b[Yy]eah\\b", "\\b[Ss]omething\\b", "\\b[Tt]est\\b"],
 "de":["\\bder\\b", "\\bden\\b", "\\bdem\\b", "\\bauf\\b", "\\bein\\b", "\\b[Tt]ag\\b", "\\b[Tt]un\\b", "\\b[Mm]ache"],
 "ja":["仕事", "職場", "同僚", "趣味", "個人", "一日", "今日", "明日", "昨日", "今夜", "妻", "言語", "対応", "テスト", "てすと"]
 }
