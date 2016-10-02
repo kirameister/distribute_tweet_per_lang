@@ -14,13 +14,26 @@
 	"de":[
 		"[ÄÜÖäüöß]",
 		"\\b[Dd]eutch\\b",
-		"\\bder\\b",
-		"\\bden\\b",
-		"\\bdem\\b",
-		"\\bauf\\b",
-		"\\bein\\b",
+		"\\b[Ii]ch\\b",
+		"\\b[Dd]u\\b",
+		"\\b[Ee]s\\b",
+		"\\b[Ee]r\\b",
+		"\\b[Ss]ie\\b",
+		"\\b[Ii]hr\\b",
+		"\\b[Ii]hnen\\b",
+		"\\b[Dd]er\\b",
+		"\\b[Dd]es\\b",
+		"\\b[Dd]em\\b",
+		"\\b[Dd]en\\b",
+		"\\b[Dd]as\\b",
+		"\\b[Ee]in\\b",
+		"\\b[Ee]ine[smn]?\\b",
+		"\\b[Aa]uf\\b",
+		"\\b[Hh]inter\\b",
+		"\\b[Uu]nte",
+		"\\b[Gg]egen",
 		"\\b[Tt]ag\\b",
 		"\\b[Tt]un\\b",
-		"\\b[Mm]ache"
+		"\\b[Mm]ach"
 	]
 }
