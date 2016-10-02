@@ -1,5 +1,5 @@
 {
-"en":["\\bjob\\b", "\\bgood\\b", "\\b[Tt]he\\b", "\\bday\\b", "\\blike\\b", "\\b[Yy]eah\\b", "\\b[Ss]omething\\b", "\\b[Tt]est\\b"],
-"de":["\\bder\\b", "\\bden\\b", "\\bdem\\b", "\\bauf\\b", "\\bein\\b", "\\b[Tt]ag\\b", "\\b[Tt]un\\b", "\\b[Mm]ache"],
-"ja":["[ぁ-ん]", "[ァ-ン]", "[一-龥]", "[。、・]"]
+"ja":["[ぁ-ん]", "[ァ-ン]", "[一-龥]", "[。、・]"],
+"en":["\\b[Ee]nglish\\b", "\\bjob\\b", "\\bgood\\b", "\\b[Tt]he\\b", "\\bday\\b", "\\blike\\b", "\\b[Yy]eah\\b", "\\b[Ss]omething\\b", "\\b[Tt]est\\b"],
+"de":["\\b[Dd]eutch\\b", "\\bder\\b", "\\bden\\b", "\\bdem\\b", "\\bauf\\b", "\\bein\\b", "\\b[Tt]ag\\b", "\\b[Tt]un\\b", "\\b[Mm]ache"]
 }
