@@ -24,7 +24,7 @@ def manual_lang_detection(text: str, lang_data):
 if(__name__ == '__main__'):
     parser = argparse.ArgumentParser(description='Detect the language of latest tweet(s) and distribute to appropriate (and separate) account. ')
     parser.add_argument('config_file', type=str, help="Name of the JSON file with required configurations. ")
-    parser.add_argument('-l', '--lang', type=str, help="Name of the JSON file with expressions for different languages")
+    parser.add_argument('-l', '--lang', metavar="JSON_with_lang_expressions", type=str, help="Name of the JSON file with expressions for different languages")
     parser.add_argument('-v', '--verbose', action="store_true")
     parser.add_argument('-i', '--init', help="Simply store the latest tweet ID, no forwarding", action="store_true")
     parser.add_argument('-d', '--dry', help="Dry run, do not actually post the tweets", action="store_true")
