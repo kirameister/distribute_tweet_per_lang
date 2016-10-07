@@ -24,4 +24,13 @@ optional arguments:
   -d, --dry             Dry run, do not actually post the tweets
 ```
 
+# Initialize
+
+In order to run the script, your environment is assumed to have `pip` and `virtualenv`. By typing followning commands, setup shall be completed. 
+
+```
+git clone https://github.com/kirameister/distribute_tweet_per_lang.git
+sh init.sh
+# you need to edit config.json file
+```
 
