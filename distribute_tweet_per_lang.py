@@ -34,15 +34,18 @@ if(__name__ == '__main__'):
         config_data = json.load(fd)
     CONSUMER_KEY = config_data["consumer_key"]
     CONSUMER_SECRET = config_data["consumer_secret"]
-    auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
-    if(args.verbose):
-        print("consumer_key: " + CONSUMER_KEY + "\nconsumer_secret: "+ CONSUMER_SECRET)
+    # loading the data with language-specific expressions..
     lang_data = []
     if(args.lang):
         if(args.verbose):
             print("language file: " + args.lang)
         with codecs.open(args.lang, 'r', 'utf-8') as fd:
             lang_data = json.load(fd)
+
+    # Twitter auth
+    auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
+    if(args.verbose):
+        print("consumer_key: " + CONSUMER_KEY + "\nconsumer_secret: "+ CONSUMER_SECRET)
     # Retrieving tweets from src account..
     ACCESS_TOKEN = config_data["src_account"]["access_token"]
     ACCESS_SECRET = config_data["src_account"]["access_secret"]
@@ -56,14 +59,17 @@ if(__name__ == '__main__'):
             print("INIT MODE -- last ID: " + str(results[0].id))
     else:
         results = api.user_timeline(screen_name=config_data["src_account"]["account_name"], since_id=int(config_data["last_id"]))
+
     # update the latest tweet ID.
     try:
         config_data["last_id"] = results[0].id
     except IndexError:
+        # No update returned from Twitter => exit
         print("=== No result obtained, perhaps no updated tweet from the last run? ===")
         sys.exit()
     if(args.init):
         sys.exit()
+    # Reverse the order in the obtained tweet list in order to forward the tweets in chronological order
     results.reverse()
     if(args.verbose):
         print("=== Obtained Tweets since last run ===")
@@ -101,6 +107,7 @@ if(__name__ == '__main__'):
                     print("Ignored because it is not one of those specified languages ("+ lang +"): \t" + result.text)
                 continue
 
+    # Update the config file to include the last-retrieved Tweet ID..
     with open(args.config_file, 'w') as fd:
         json.dump(config_data, fd, sort_keys=True, indent=4)
 
